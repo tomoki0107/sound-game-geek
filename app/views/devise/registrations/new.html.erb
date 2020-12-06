@@ -2,7 +2,7 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        新規登録画面
+        新規登録
       </h1>
     </div>
   </div>
@@ -29,7 +29,7 @@
         <div class="field">
           <%= f.label :password, class: "label" %>
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em>(<%= @minimum_password_length %>文字以上の半角英数字)</em>
           <% end %>
           <%= f.password_field :password, autocomplete: "new-password", :placeholder => "password", class: "input" %>
         </div>
