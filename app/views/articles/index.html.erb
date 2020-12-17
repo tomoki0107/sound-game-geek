@@ -1,2 +1,50 @@
-<h1>Articles#index</h1>
-<p>Find me in app/views/articles/index.html.erb</p>
+
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        投稿記事一覧
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @articles.each do |article| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <%= link_to article_path(article) do %>
+                  <%= image_tag article.image %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <% if article.user.profile_image.attached? %>
+                      <%= image_tag article.user.profile_image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "profile_image is-rounded" %>
+                    <% else %>
+                      <%= image_tag ("no-image.png"), class: "profile_image is-rounded" %>
+                    <% end %>
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <div class="title"><%=link_to article.user.nickname, user_path(article.user) %></div>
+                </div>
+              </div>
+
+              <div class="content">
+                <time><%= article.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
