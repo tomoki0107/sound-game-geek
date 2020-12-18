@@ -33,6 +33,9 @@
                   <div class="title"><%=link_to user.nickname, user_path(user) %></div>
                 </div>
               </div>
+              <div class="content">
+                投稿数：<%= user.articles.count %>
+              </div>
             </div>
           </div>
         </div>
