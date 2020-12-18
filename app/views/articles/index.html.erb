@@ -26,15 +26,17 @@
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-48x48">
-                    <% if article.user.profile_image.attached? %>
-                      <%= image_tag article.user.profile_image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "profile_image is-rounded" %>
-                    <% else %>
-                      <%= image_tag ("no-image.png"), class: "profile_image is-rounded" %>
+                    <%=link_to user_path(article.user) do %>
+                      <% if article.user.profile_image.attached? %>
+                        <%= image_tag article.user.profile_image.variant(combine_options:{gravity: :center, resize:"300x300^", crop:"300x300+0+0"}).processed, class: "profile_image is-rounded" %>
+                      <% else %>
+                        <%= image_tag ("no-image.png"), class: "profile_image is-rounded" %>
+                      <% end %>
                     <% end %>
                   </figure>
                 </div>
                 <div class="media-content">
-                  <div class="title"><%=link_to article.user.nickname, user_path(article.user) %></div>
+                  <div class="title"><%=link_to article.title, article_path(article) %></div>
                 </div>
               </div>
 
