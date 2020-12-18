@@ -11,24 +11,36 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.save
-    redirect_to article_path(@article)
+    if @article.save
+      redirect_to article_path(@article)
+    else
+      render :new
+    end
   end
 
   def show
   end
 
   def edit
+    if @article.user.id != current_user.id
+      redirect_to articles_path, alert: '不正なアクセスです'
+    end
   end
 
   def update
     @article.update(article_params)
-    redirect_to article_path(@article)
+    if @article.save
+      redirect_to article_path(@article), notice: "記事を更新しました"
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @article.destroy
-    redirect_to articles_path
+    if current_user.id == @article.user.id
+      @article.destroy
+    end
+    redirect_to user_path(@article.user), notice: "記事を削除しました"
   end
 
   private

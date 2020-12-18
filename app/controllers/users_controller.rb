@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_user, only: [:show, :edit]
+  before_action :set_user, only: [:show, :edit, :update]
   def index
     @users = User.all
   end
@@ -9,11 +9,14 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if @user.id != current_user.id
+      redirect_to user_path(current_user), alert: "不正なアクセスです。"
+    end
   end
   
   def update
-    if current_user.update(user_params)
-      redirect_to user_path
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "ユーザー情報を更新しました"
     else
       render :edit
     end
