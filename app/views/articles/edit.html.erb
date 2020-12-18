@@ -21,11 +21,6 @@
           </div>
 
           <div class="field">
-            <%= f.label :info, "内容", class: "label" %>
-            <%= f.text_area :info, class: "textarea" %>
-          </div>
-
-          <div class="field">
             <%= f.label :image, "写真", class: "label" %>
             <%= f.file_field :image, class: "input" %>
           </div>
@@ -35,6 +30,10 @@
             <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"input"})  %>
           </div>
 
+          <div class="field">
+            <%= f.label :info, "内容", class: "label" %>
+            <%= f.text_area :info, class: "textarea" %>
+          </div>
           
           <%= f.submit '投稿', class: "button is-success" %>
         <% end %>
