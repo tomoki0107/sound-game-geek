@@ -10,5 +10,5 @@ class Article < ApplicationRecord
     validates :image
     validates :info
   end
-  validates :category_id, numericality: { other_than: 1 }
+  validates :category_id, numericality: { other_than: 1, message: 'Select' }
 end
