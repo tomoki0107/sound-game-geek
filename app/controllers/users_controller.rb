@@ -1,19 +1,22 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+  before_action :set_user, only: [:show, :edit, :update]
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
+    if @user.id != current_user.id
+      redirect_to user_path(current_user), alert: "不正なアクセスです。"
+    end
   end
   
   def update
-    if current_user.update(user_params)
-      redirect_to user_path
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "ユーザー情報を更新しました"
     else
       render :edit
     end
@@ -23,5 +26,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:nickname, :email, :profile, :profile_image)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
