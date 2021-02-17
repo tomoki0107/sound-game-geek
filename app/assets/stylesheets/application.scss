@@ -19,3 +19,10 @@
  .notification:not(:last-child){
 	margin-bottom: 0;
 }
+
+.main-image {
+	height: 940px;
+	background-image: url(live1.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
