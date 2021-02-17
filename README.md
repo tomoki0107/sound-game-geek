@@ -5,6 +5,10 @@
 このアプリケーションは音楽ゲームを行っているユーザーが情報を共有しあうものです。
 
 ## URL,テスト用アカウント
+URL: https://sound-game-geek.herokuapp.com/
+テスト用アカウント
+email: sato@gmail.com
+password: 111aaa
 
 
 ## 利用方法
